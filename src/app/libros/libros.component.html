@@ -1,0 +1,88 @@
+<body>
+  <header>
+    <nav class="py-2 bg-body-tertiary border-bottom">
+      <div class="container d-flex flex-wrap">
+        <ul class="nav me-auto">
+          <li class="nav-item"><a  class="nav-link link-body-emphasis px-2 active" [routerLink]="['/Libros']" aria-current="page">Libros</a></li>
+          <li class="nav-item"><a  class="nav-link link-body-emphasis px-2"  [routerLink]="['/Autores']">Autores</a></li>
+          <li class="nav-item"><a class="nav-link link-body-emphasis px-2" [routerLink]="['/Reservas']">Reservas</a></li>
+          <li class="nav-item"><a class="nav-link link-body-emphasis px-2" [routerLink]="['/Catalogo']">Catalogo</a></li>
+          <li class="nav-item"><a  class="nav-link link-body-emphasis px-2">About</a></li>
+        </ul>
+        <ul class="nav">          
+          <li class="nav-item"><a  class="nav-link link-body-emphasis px-3">Sesion Start</a></li>
+        </ul>
+  
+          <div class="flex-shrink-0 dropdown mt-1">
+            <a class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://cdn.icon-icons.com/icons2/1508/PNG/512/systemusers_104569.png" alt="mdo" width="32" height="32" class="rounded-circle">
+            </a>
+            <ul class="dropdown-menu text-small shadow " >
+              <li><a class="dropdown-item" >New project...</a></li>
+              <li><a class="dropdown-item" >Settings</a></li>
+              <li><a class="dropdown-item">Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" [routerLink]="['/Loggin']">Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+ 
+    </nav>
+    <div class="py-3 mb-4 border-bottom">
+      <div class="container d-flex flex-wrap justify-content-center">
+        <a  class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
+         <img src="https://servicios.ucacue.edu.ec/wp-content/uploads/2020/03/logo_tama%C3%B1o_web_vertical.png" height="50" width="75">
+          <span class="fs-4 mx-3">Biblioteca Ucacue</span>
+        </a>
+        <div class="form-group col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input type="text" class="form-control" [(ngModel)]="nombreLibro" id="buscarLibro" placeholder="Nombre del libro">
+        </div>
+        <div class="text-end">
+          <button class="btn btn-primary" (click)="buscarLibros()">Buscar</button>
+        </div>
+      </div>
+    </div>
+    </header>
+
+ <!-- Boddy-->
+ <div class="container">
+ <div *ngIf="libros.length > 0" class="row">
+ <div  class="col mx-4"*ngFor="let libro of libros">
+  <div class="card shadow-sm">
+    <img src="https://static.vecteezy.com/system/resources/previews/000/462/109/non_2x/sketch-books-set-vector.jpg" width="100%" height="260"/>
+    <div class="card-body">
+      <h5 class="card-title">{{libro.nombre}}</h5>
+      <p class="card-text">Este libro habla sobre {{libro.descripcion}}. Escrito por la editorial {{libro.editorial}} sobre un genero profundo{{libro.genero}}</p>
+      
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-outline-secondary" disabled>Reservar</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-2-front-fill" viewBox="0 0 16 16">
+            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+          </svg></button>
+        </div>
+        <small class="text-body-secondary">100.000 views</small>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+ <!-- Mostrar mensaje si no hay libros -->
+ <div *ngIf="libros.length === 0" class="row justify-content-center">
+  <div class="col-lg-4 justify-content-center align-items-center" >
+    <div class="modal-content rounded-3 shadow">
+      <div class="modal-body p-4 text-center">
+        <h5 class="mb-0 mt-3">No se encontro ningun libro</h5>
+        <p class="mb-0 mt-2">You can always change your mind in your account settings.</p>
+      </div>
+      <div class="modal-footer flex-nowrap p-0">
+        <button type="button" (click)="actualizar()"  class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-2 m-0 rounded-0 border-end"><strong>Cerrar</strong></button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!--Fin-Boddy-->
+
+</body>
+
